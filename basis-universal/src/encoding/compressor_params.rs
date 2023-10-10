@@ -279,6 +279,13 @@ impl CompressorParams {
         }
     }
 
+    /// Generate a ".ktx2" file in addition to a ".basis" file.
+    pub fn generate_ktx2_file(&mut self) {
+        unsafe {
+            sys::compressor_params_set_create_ktx2_file(self.0, true);
+        }
+    }
+
     // set_multithreaded not implemented here as this is controlled by thread count passed to
     // `Compressor::new()`
 }

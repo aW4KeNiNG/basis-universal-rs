@@ -562,6 +562,12 @@ extern "C" {
         userdata1: u32,
     );
 }
+extern "C" {
+    pub fn compressor_params_set_create_ktx2_file(
+        params: *mut CompressorParams,
+        create_ktx2_file: bool,
+    );
+}
 #[repr(C)]
 #[repr(align(8))]
 #[derive(Debug, Copy, Clone)]
@@ -639,6 +645,50 @@ fn bindgen_test_layout_CompressorBasisFile() {
 }
 extern "C" {
     pub fn compressor_get_output_basis_file(compressor: *mut Compressor) -> CompressorBasisFile;
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct CompressorKtx2File {
+    pub pData: *const u8,
+    pub length: usize,
+}
+#[test]
+fn bindgen_test_layout_CompressorKtx2File() {
+    const UNINIT: ::std::mem::MaybeUninit<CompressorKtx2File> = ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<CompressorKtx2File>(),
+        16usize,
+        concat!("Size of: ", stringify!(CompressorKtx2File))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<CompressorKtx2File>(),
+        8usize,
+        concat!("Alignment of ", stringify!(CompressorKtx2File))
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).pData) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(CompressorKtx2File),
+            "::",
+            stringify!(pData)
+        )
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).length) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(CompressorKtx2File),
+            "::",
+            stringify!(length)
+        )
+    );
+}
+extern "C" {
+    pub fn compressor_get_output_ktx2_file(compressor: *mut Compressor) -> CompressorKtx2File;
 }
 extern "C" {
     pub fn compressor_get_basis_file_size(compressor: *const Compressor) -> u32;
