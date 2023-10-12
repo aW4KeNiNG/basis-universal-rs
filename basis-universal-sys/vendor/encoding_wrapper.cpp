@@ -1,5 +1,6 @@
 #include "basis_universal/encoder/basisu_comp.h"
 #include "basis_universal/encoder/basisu_enc.h"
+#include "basis_universal/zstd/zstd.h"
 
 //TODO: constants
 
@@ -29,6 +30,11 @@ extern "C" {
         PackUASTCETC1FasterHints = basisu::cPackUASTCETC1FasterHints,
         PackUASTCETC1FastestHints = basisu::cPackUASTCETC1FastestHints,
         PackUASTCETC1DisableFlipAndIndividual = basisu::cPackUASTCETC1DisableFlipAndIndividual,
+    };
+
+    enum Ktx2SuperCompression {
+        None = basist::KTX2_SS_NONE,
+        ZStandard = basist::KTX2_SS_ZSTANDARD,
     };
 
     void image_clear(basisu::image *image) {
@@ -235,6 +241,14 @@ extern "C" {
 
     void compressor_params_set_create_ktx2_file(CompressorParams *params, bool create_ktx2_file) {
         params->pParams->m_create_ktx2_file = create_ktx2_file;
+    }
+
+    void compressor_params_set_ktx2_uastc_supercompression(CompressorParams *params, Ktx2SuperCompression supercompression) {
+        params->pParams->m_ktx2_uastc_supercompression = static_cast<basist::ktx2_supercompression>(supercompression);
+    }
+
+    void compressor_params_set_ktx2_uastc_zstd_supercompression_level(CompressorParams *params, int compression_level) {
+        params->pParams->m_ktx2_zstd_supercompression_level = compression_level;
     }
 
     // compressor_params_set_multithreaded is not implemented because this parameter is controlled by thread count

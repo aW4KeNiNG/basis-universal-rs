@@ -1,5 +1,5 @@
 use super::*;
-use crate::{BasisTextureFormat, UserData};
+use crate::{BasisTextureFormat, Ktx2UastcSuperCompression, UserData};
 use basis_universal_sys as sys;
 pub use basis_universal_sys::ColorU8;
 
@@ -328,6 +328,30 @@ impl CompressorParams {
     pub fn generate_ktx2_file(&mut self) {
         unsafe {
             sys::compressor_params_set_create_ktx2_file(self.0, true);
+        }
+    }
+
+    /// Sets UASTC supercompression.
+    pub fn set_ktx2_uastc_supercompression(
+        &mut self,
+        supercompression: Ktx2UastcSuperCompression,
+    ) {
+        unsafe {
+            sys::compressor_params_set_ktx2_uastc_supercompression(self.0, supercompression.into());
+        }
+    }
+
+    /// Sets UASTC supercompression level. The value MUST be >= [ZSTD_LEVEL_MIN](crate::ZSTD_LEVEL_MIN)
+    /// and <= [ZSTD_LEVEL_MAX](crate::ZSTD_LEVEL_MAX).
+    pub fn set_ktx2_uastc_supercompression_level(
+        &mut self,
+        compression_level: i32,
+    ) {
+        assert!(compression_level >= crate::zstd_level_min());
+        assert!(compression_level <= crate::zstd_level_max());
+
+        unsafe {
+            sys::compressor_params_set_ktx2_uastc_zstd_supercompression_level(self.0, compression_level);
         }
     }
 

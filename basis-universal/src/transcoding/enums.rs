@@ -77,6 +77,30 @@ impl BasisTextureFormat {
     }
 }
 
+/// The super compression mode to use in Ktx2 UASTC
+#[allow(non_camel_case_types)]
+#[derive(Copy, Clone, Debug, PartialEq)]
+#[repr(i32)]
+pub enum Ktx2UastcSuperCompression {
+    /// No compression
+    None = sys::Ktx2SuperCompression_None,
+
+    /// Uses the ZStandard compression algorithm
+    ZStandard = sys::Ktx2SuperCompression_ZStandard,
+}
+
+impl Into<sys::Ktx2SuperCompression> for Ktx2UastcSuperCompression {
+    fn into(self) -> sys::Ktx2SuperCompression {
+        self as sys::Ktx2SuperCompression
+    }
+}
+
+impl From<sys::Ktx2SuperCompression> for Ktx2UastcSuperCompression {
+    fn from(value: sys::Ktx2SuperCompression) -> Self {
+        unsafe { std::mem::transmute(value as i32) }
+    }
+}
+
 /// The texture format to transcode basis-universal data into
 #[allow(non_camel_case_types)]
 #[derive(Copy, Clone, Debug, PartialEq)]

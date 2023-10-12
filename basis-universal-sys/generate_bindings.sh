@@ -97,6 +97,8 @@ bindgen vendor/encoding_wrapper.cpp -o src/encoding_bindings.rs \
   --allowlist-function compressor_params_set_mip_smallest_dimension \
   --allowlist-function compressor_params_set_userdata \
   --allowlist-function compressor_params_set_create_ktx2_file \
+  --allowlist-function compressor_params_set_ktx2_uastc_supercompression \
+  --allowlist-function compressor_params_set_ktx2_uastc_zstd_supercompression_level \
   \
   --allowlist-function compressor_new \
   --allowlist-function compressor_delete \
@@ -110,6 +112,9 @@ bindgen vendor/encoding_wrapper.cpp -o src/encoding_bindings.rs \
   --allowlist-function compressor_get_any_source_image_has_alpha \
   \
   --allowlist-function basisu_encoder_init \
+  \
+  --allowlist-function ZSTD_minCLevel \
+  --allowlist-function ZSTD_maxCLevel \
   \
   --allowlist-var basisu::BASISU_MAX_SUPPORTED_TEXTURE_DIMENSION \
   --allowlist-var basisu::BASISU_DEFAULT_ENDPOINT_RDO_THRESH \

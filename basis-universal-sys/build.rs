@@ -25,7 +25,7 @@ fn main() {
 
     build_with_common_settings()
         .cpp(true)
-        .define("BASISD_SUPPORT_KTX2_ZSTD", "0")
+        .define("BASISD_SUPPORT_KTX2_ZSTD", "1")
         .define(
             "BASISU_SUPPORT_SSE",
             if build_with_sse4_1 { "1" } else { "0" },
@@ -49,6 +49,7 @@ fn main() {
         .file("vendor/basis_universal/encoder/basisu_basis_file.cpp")
         .file("vendor/basis_universal/encoder/basisu_backend.cpp")
         .file("vendor/basis_universal/transcoder/basisu_transcoder.cpp")
+        .file("vendor/basis_universal/zstd/zstd.h")
         .file("vendor/transcoding_wrapper.cpp")
         .file("vendor/encoding_wrapper.cpp")
         .compile("basisuniversal");
