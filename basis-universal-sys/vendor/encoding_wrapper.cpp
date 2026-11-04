@@ -119,9 +119,18 @@ extern "C" {
         basisu::basis_compressor_params *pParams;
     };
 
+    // basisu 2.x defaults m_mip_srgb and the sRGB transfer function of the output to true. This
+    // binding keeps the defaults of 1.16 (linear): an sRGB transfer function makes loaders decode
+    // data textures (normal maps, roughness) as colors. Call the setters for color textures.
+    static void set_binding_defaults(basisu::basis_compressor_params *params) {
+        params->m_mip_srgb = false;
+        params->m_ktx2_and_basis_srgb_transfer_function = false;
+    }
+
     CompressorParams *compressor_params_new() {
         CompressorParams *params = new CompressorParams;
         params->pParams = new basisu::basis_compressor_params();
+        set_binding_defaults(params->pParams);
         return params;
     };
 
@@ -132,6 +141,7 @@ extern "C" {
 
     void compressor_params_clear(CompressorParams *params) {
         params->pParams->clear();
+        set_binding_defaults(params->pParams);
     }
 
     //
@@ -150,7 +160,7 @@ extern "C" {
     }
 
     void compressor_params_clear_source_image_list(CompressorParams *params) {
-        params->pParams->clear();
+        params->pParams->m_source_images.clear();
     }
 
     // These function are used to load custom mip map image data into the compressor
@@ -208,6 +218,11 @@ extern "C" {
 
     void compressor_params_set_mip_srgb(CompressorParams *params, bool mip_srgb) {
         params->pParams->m_mip_srgb = mip_srgb;
+    }
+
+    // The transfer function the .basis/.KTX2 file declares: sRGB (true) or linear (false)
+    void compressor_params_set_srgb_transfer_function(CompressorParams *params, bool srgb) {
+        params->pParams->m_ktx2_and_basis_srgb_transfer_function = srgb;
     }
 
     void compressor_params_set_no_selector_rdo(CompressorParams *params, bool no_selector_rdo) {

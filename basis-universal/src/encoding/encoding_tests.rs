@@ -28,6 +28,49 @@ fn test_compressor_init() {
     std::mem::drop(compressor_params);
 }
 
+/// The transfer function in the DFD of a KTX2 file: 1 is linear, 2 is sRGB
+fn ktx2_transfer_function(ktx2: &[u8]) -> u8 {
+    use std::convert::TryInto;
+    let dfd_offset = u32::from_le_bytes(ktx2[48..52].try_into().unwrap()) as usize;
+    // dfdTotalSize, two words of block header, colorModel, colorPrimaries, transferFunction
+    ktx2[dfd_offset + 14]
+}
+
+fn compress_ktx2(configure: impl FnOnce(&mut CompressorParams)) -> Vec<u8> {
+    let mut compressor_params = CompressorParams::new();
+    // First, so that a reset() doesn't undo the rest
+    configure(&mut compressor_params);
+    compressor_params.generate_ktx2_file();
+    compressor_params.set_print_status_to_stdout(false);
+    compressor_params.set_basis_format(BasisTextureFormat::UASTC4x4);
+    compressor_params
+        .source_image_mut(0)
+        .init(&[128u8; 8 * 8 * 4], 8, 8, 4);
+    let mut compressor = Compressor::default();
+    unsafe {
+        assert!(compressor.init(&compressor_params));
+        compressor.process().unwrap();
+    }
+    compressor.ktx2_file().to_vec()
+}
+
+#[test]
+fn test_transfer_function_is_linear_unless_set_to_srgb() {
+    // basisu 2.x defaults to sRGB, the binding keeps the linear default of 1.16
+    assert_eq!(ktx2_transfer_function(&compress_ktx2(|_| {})), 1);
+    assert_eq!(
+        ktx2_transfer_function(&compress_ktx2(|params| params.reset())),
+        1
+    );
+    let srgb = compress_ktx2(|params| params.set_transfer_function_color_space(ColorSpace::Srgb));
+    assert_eq!(ktx2_transfer_function(&srgb), 2);
+    let normal_map = compress_ktx2(|params| {
+        params.set_transfer_function_color_space(ColorSpace::Srgb);
+        params.tune_for_normal_maps();
+    });
+    assert_eq!(ktx2_transfer_function(&normal_map), 1);
+}
+
 #[test]
 fn test_compressor_params_smoketest_bindings() {
     let mut compressor_params = CompressorParams::new();

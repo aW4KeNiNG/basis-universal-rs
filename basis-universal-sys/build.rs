@@ -100,5 +100,10 @@ fn main() {
         .file("vendor/basis_universal/zstd/zstd.c")
         .compile("basisuniversal_zstd");
 
+    // cc prints rerun-if-env-changed lines, which turn off the default rerun on any change of the
+    // package: without these, an edit to the wrappers wouldn't rebuild them.
+    println!("cargo:rerun-if-changed=build.rs");
+    println!("cargo:rerun-if-changed=vendor");
+
     // We regenerate binding code and check it in. (See generate_bindings.sh)
 }

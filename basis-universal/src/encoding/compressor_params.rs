@@ -233,6 +233,23 @@ impl CompressorParams {
         }
     }
 
+    /// The transfer function the output file declares (the DFD of a KTX2), which loaders use to
+    /// pick an sRGB or a linear GPU format. Linear by default. glTF (`KHR_texture_basisu`) expects
+    /// sRGB for color textures (base color, emissive) and linear for data (normal maps, metallic,
+    /// roughness, occlusion), which a loader would otherwise decode as colors.
+    pub fn set_transfer_function_color_space(
+        &mut self,
+        color_space: ColorSpace,
+    ) {
+        let srgb = match color_space {
+            ColorSpace::Linear => false,
+            ColorSpace::Srgb => true,
+        };
+        unsafe {
+            sys::compressor_params_set_srgb_transfer_function(self.0, srgb);
+        }
+    }
+
     /// Disable backend's selector rate distortion optimizations (slightly faster, less noisy
     /// output, but lower quality per output bit)
     pub fn set_no_selector_rdo(
@@ -314,12 +331,13 @@ impl CompressorParams {
     /// * linear colorspace metrics
     /// * linear mipmap filtering
     /// * no selector RDO
-    /// * no sRGB
+    /// * no sRGB (linear transfer function)
     pub fn tune_for_normal_maps(&mut self) {
         //TODO
         unsafe {
             sys::compressor_params_set_perceptual(self.0, false);
             sys::compressor_params_set_mip_srgb(self.0, false);
+            sys::compressor_params_set_srgb_transfer_function(self.0, false);
             sys::compressor_params_set_no_selector_rdo(self.0, true);
             sys::compressor_params_set_no_endpoint_rdo(self.0, true);
         }

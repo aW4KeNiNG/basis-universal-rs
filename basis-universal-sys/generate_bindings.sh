@@ -93,6 +93,7 @@ bindgen vendor/encoding_wrapper.cpp -o src/encoding_bindings.rs \
   --allowlist-function compressor_params_set_uastc \
   --allowlist-function compressor_params_set_perceptual \
   --allowlist-function compressor_params_set_mip_srgb \
+  --allowlist-function compressor_params_set_srgb_transfer_function \
   --allowlist-function compressor_params_set_no_selector_rdo \
   --allowlist-function compressor_params_set_no_endpoint_rdo \
   --allowlist-function compressor_params_set_rdo_uastc \

@@ -10,6 +10,11 @@
  * `CompressorErrorCode` is converted with a match instead of a transmute, and has the codes it
    lacked (`cECFailedInitializing`, `cECFailedCreateKTX2File`, `cECFailedInvalidParameters`) and
    `cECUnknown`
+ * Keeps the linear defaults of 1.16: basisu 2.x defaults `m_mip_srgb` and the sRGB transfer
+   function of the output to true, which made every KTX2 declare sRGB (normal maps included)
+ * New `CompressorParams::set_transfer_function_color_space`, for the transfer function the output
+   declares. `tune_for_normal_maps` sets it to linear
+ * `clear_source_image_list` clears only the source images (it cleared every parameter)
  * Dependencies: bitflags 2 (`DecodeFlags` derives `Debug`, `Clone`, `Copy`, `PartialEq`, `Eq` and
    `Hash`), image 0.25 for the tests and examples, and no more lazy_static
 

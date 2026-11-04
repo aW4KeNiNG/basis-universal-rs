@@ -554,6 +554,12 @@ extern "C" {
     );
 }
 extern "C" {
+    pub fn compressor_params_set_srgb_transfer_function(
+        params: *mut CompressorParams,
+        srgb: bool,
+    );
+}
+extern "C" {
     pub fn compressor_params_set_no_selector_rdo(
         params: *mut CompressorParams,
         no_selector_rdo: bool,
