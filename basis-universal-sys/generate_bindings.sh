@@ -98,6 +98,8 @@ bindgen vendor/encoding_wrapper.cpp -o src/encoding_bindings.rs \
   --allowlist-function compressor_params_set_no_endpoint_rdo \
   --allowlist-function compressor_params_set_rdo_uastc \
   --allowlist-function compressor_params_set_rdo_uastc_quality_scalar \
+  --allowlist-function compressor_params_set_rdo_uastc_dict_size \
+  --allowlist-function compressor_params_set_etc1s_compression_level \
   --allowlist-function compressor_params_set_generate_mipmaps \
   --allowlist-function compressor_params_set_mip_smallest_dimension \
   --allowlist-function compressor_params_set_userdata \
@@ -135,6 +137,8 @@ bindgen vendor/encoding_wrapper.cpp -o src/encoding_bindings.rs \
   --allowlist-var basisu::BASISU_RDO_UASTC_DICT_SIZE_DEFAULT \
   --allowlist-var basisu::BASISU_RDO_UASTC_DICT_SIZE_MIN \
   --allowlist-var basisu::BASISU_RDO_UASTC_DICT_SIZE_MAX \
+  --allowlist-var basisu::BASISU_DEFAULT_ETC1S_COMPRESSION_LEVEL \
+  --allowlist-var basisu::BASISU_MAX_ETC1S_COMPRESSION_LEVEL \
   --allowlist-var basisu::TOTAL_PACK_UASTC_LEVELS \
   \
   --opaque-type CompressorParams \

@@ -72,6 +72,26 @@ fn test_transfer_function_is_linear_unless_set_to_srgb() {
 }
 
 #[test]
+fn test_uastc_quality_level_replaces_the_level() {
+    let level = |params: &CompressorParams| unsafe {
+        sys::compressor_params_get_pack_uastc_flags(params.0)
+            & basis_universal_sys::UastcPackFlags_PackUASTCLevelMask
+    };
+    let mut compressor_params = CompressorParams::new();
+    assert_eq!(
+        level(&compressor_params),
+        crate::UASTC_QUALITY_DEFAULT as i32
+    );
+    // An OR with the default level (2) turned 1 into 3
+    compressor_params.set_uastc_quality_level(1);
+    assert_eq!(level(&compressor_params), 1);
+    compressor_params.set_uastc_quality_level(0);
+    assert_eq!(level(&compressor_params), 0);
+    compressor_params.set_uastc_quality_level(3);
+    assert_eq!(level(&compressor_params), 3);
+}
+
+#[test]
 fn test_compressor_params_smoketest_bindings() {
     let mut compressor_params = CompressorParams::new();
 
@@ -84,6 +104,8 @@ fn test_compressor_params_smoketest_bindings() {
     compressor_params.set_uastc_quality_level(crate::UASTC_QUALITY_DEFAULT);
     compressor_params.set_basis_format(BasisTextureFormat::UASTC4x4);
     compressor_params.set_generate_mipmaps(true);
+    compressor_params.set_etc1s_compression_level(crate::ETC1S_COMPRESSION_LEVEL_MAX);
+    compressor_params.set_rdo_uastc_dict_size(crate::UASTC_RDO_DICT_SIZE_MIN);
 
     compressor_params.reset();
 }

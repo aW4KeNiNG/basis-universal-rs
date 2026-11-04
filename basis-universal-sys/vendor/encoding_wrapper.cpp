@@ -241,6 +241,16 @@ extern "C" {
         params->pParams->m_rdo_uastc_ldr_4x4_quality_scalar = rdo_uastc_quality_scalar;
     }
 
+    // ETC1S effort (-comp_level in basisu): 0 (fastest) to BASISU_MAX_ETC1S_COMPRESSION_LEVEL
+    void compressor_params_set_etc1s_compression_level(CompressorParams *params, int level) {
+        params->pParams->m_etc1s_compression_level = level;
+    }
+
+    // UASTC RDO dictionary size in bytes, BASISU_RDO_UASTC_DICT_SIZE_MIN to _MAX
+    void compressor_params_set_rdo_uastc_dict_size(CompressorParams *params, int dict_size) {
+        params->pParams->m_rdo_uastc_ldr_4x4_dict_size = dict_size;
+    }
+
     void compressor_params_set_generate_mipmaps(CompressorParams *params, bool generate_mipmaps) {
         params->pParams->m_mip_gen = generate_mipmaps;
     }

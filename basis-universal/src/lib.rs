@@ -40,6 +40,18 @@ pub const ETC1S_QUALITY_MIN: u32 = sys::basisu_BASISU_QUALITY_MIN as u32;
 /// The maximum quality level that can be provided to [CompressorParams::set_etc1s_quality_level]
 pub const ETC1S_QUALITY_MAX: u32 = sys::basisu_BASISU_QUALITY_MAX as u32;
 
+/// The default level used if [CompressorParams::set_etc1s_compression_level] is not called
+pub const ETC1S_COMPRESSION_LEVEL_DEFAULT: u32 = sys::basisu_BASISU_DEFAULT_ETC1S_COMPRESSION_LEVEL;
+/// The maximum level that can be provided to [CompressorParams::set_etc1s_compression_level]
+pub const ETC1S_COMPRESSION_LEVEL_MAX: u32 = sys::basisu_BASISU_MAX_ETC1S_COMPRESSION_LEVEL;
+
+/// The default size used if [CompressorParams::set_rdo_uastc_dict_size] is not called
+pub const UASTC_RDO_DICT_SIZE_DEFAULT: u32 = sys::basisu_BASISU_RDO_UASTC_DICT_SIZE_DEFAULT as u32;
+/// The minimum size that can be provided to [CompressorParams::set_rdo_uastc_dict_size]
+pub const UASTC_RDO_DICT_SIZE_MIN: u32 = sys::basisu_BASISU_RDO_UASTC_DICT_SIZE_MIN as u32;
+/// The maximum size that can be provided to [CompressorParams::set_rdo_uastc_dict_size]
+pub const UASTC_RDO_DICT_SIZE_MAX: u32 = sys::basisu_BASISU_RDO_UASTC_DICT_SIZE_MAX as u32;
+
 /// The default quality level used if [CompressorParams::set_uastc_quality_level] is not called
 pub const UASTC_QUALITY_DEFAULT: u32 = sys::UastcPackFlags_PackUASTCLevelDefault as u32;
 /// The minimum quality level that can be provided to [CompressorParams::set_uastc_quality_level]

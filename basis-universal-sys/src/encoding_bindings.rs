@@ -154,6 +154,8 @@ extern "C" {
         ...
     );
 }
+pub const basisu_BASISU_DEFAULT_ETC1S_COMPRESSION_LEVEL: u32 = 2;
+pub const basisu_BASISU_MAX_ETC1S_COMPRESSION_LEVEL: u32 = 6;
 pub const basisu_TOTAL_PACK_UASTC_LEVELS: u32 = 5;
 pub const basisu_BASISU_DEFAULT_ENDPOINT_RDO_THRESH: f32 = 1.5;
 pub const basisu_BASISU_DEFAULT_SELECTOR_RDO_THRESH: f32 = 1.25;
@@ -581,6 +583,18 @@ extern "C" {
     pub fn compressor_params_set_rdo_uastc_quality_scalar(
         params: *mut CompressorParams,
         rdo_uastc_quality_scalar: f32,
+    );
+}
+extern "C" {
+    pub fn compressor_params_set_etc1s_compression_level(
+        params: *mut CompressorParams,
+        level: ::std::os::raw::c_int,
+    );
+}
+extern "C" {
+    pub fn compressor_params_set_rdo_uastc_dict_size(
+        params: *mut CompressorParams,
+        dict_size: ::std::os::raw::c_int,
     );
 }
 extern "C" {

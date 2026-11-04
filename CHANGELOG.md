@@ -15,6 +15,11 @@
  * New `CompressorParams::set_transfer_function_color_space`, for the transfer function the output
    declares. `tune_for_normal_maps` sets it to linear
  * `clear_source_image_list` clears only the source images (it cleared every parameter)
+ * `set_uastc_quality_level` replaces the level: it was ORed with the default level (2), so asking
+   for level 1 gave 3, the slowest practical one
+ * New `set_etc1s_compression_level` (ETC1S effort, `-comp_level` of basisu) and
+   `set_rdo_uastc_dict_size`, with their `ETC1S_COMPRESSION_LEVEL_*` and `UASTC_RDO_DICT_SIZE_*`
+   constants
  * Dependencies: bitflags 2 (`DecodeFlags` derives `Debug`, `Clone`, `Copy`, `PartialEq`, `Eq` and
    `Hash`), image 0.25 for the tests and examples, and no more lazy_static
 

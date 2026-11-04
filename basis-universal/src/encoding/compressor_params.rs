@@ -171,8 +171,11 @@ impl CompressorParams {
         assert!(quality_level <= crate::UASTC_QUALITY_MAX);
 
         unsafe {
-            let mut flags = sys::compressor_params_get_pack_uastc_flags(self.0);
-            flags |= quality_level as i32; // bindgen reflects constants as signed integers. So even if it doesn't make sense for the quality level to be signed, it has to be.
+            // The level replaces the level bits of the flags: an OR with the default level (2) gave
+            // 3 when asking for 1. bindgen reflects constants as signed integers. So even if it
+            // doesn't make sense for the quality level to be signed, it has to be.
+            let flags = sys::compressor_params_get_pack_uastc_flags(self.0);
+            let flags = (flags & !sys::UastcPackFlags_PackUASTCLevelMask) | quality_level as i32;
             sys::compressor_params_set_pack_uastc_flags(self.0, flags);
         }
     }
@@ -289,6 +292,36 @@ impl CompressorParams {
                     sys::compressor_params_set_rdo_uastc(self.0, false);
                 }
             }
+        }
+    }
+
+    /// Sets the UASTC RDO dictionary size in bytes, between
+    /// [UASTC_RDO_DICT_SIZE_MIN](crate::UASTC_RDO_DICT_SIZE_MIN) and
+    /// [UASTC_RDO_DICT_SIZE_MAX](crate::UASTC_RDO_DICT_SIZE_MAX). Smaller is faster, but compresses
+    /// less. Only used with [set_rdo_uastc].
+    pub fn set_rdo_uastc_dict_size(
+        &mut self,
+        dict_size: u32,
+    ) {
+        assert!(dict_size >= crate::UASTC_RDO_DICT_SIZE_MIN);
+        assert!(dict_size <= crate::UASTC_RDO_DICT_SIZE_MAX);
+
+        unsafe {
+            sys::compressor_params_set_rdo_uastc_dict_size(self.0, dict_size as i32);
+        }
+    }
+
+    /// Sets the ETC1S speed vs. quality tradeoff (`-comp_level` of basisu), from 0 (fastest) to
+    /// [ETC1S_COMPRESSION_LEVEL_MAX](crate::ETC1S_COMPRESSION_LEVEL_MAX). Higher levels are much
+    /// slower and only slightly better. Use [set_etc1s_quality_level] first.
+    pub fn set_etc1s_compression_level(
+        &mut self,
+        level: u32,
+    ) {
+        assert!(level <= crate::ETC1S_COMPRESSION_LEVEL_MAX);
+
+        unsafe {
+            sys::compressor_params_set_etc1s_compression_level(self.0, level as i32);
         }
     }
 
