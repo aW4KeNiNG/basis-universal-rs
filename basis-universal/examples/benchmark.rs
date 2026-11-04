@@ -2,7 +2,7 @@ use basis_universal::{
     BasisTextureFormat, Compressor, CompressorParams, TranscodeParameters, Transcoder,
     TranscoderTextureFormat,
 };
-use image::{DynamicImage, GenericImageView};
+use image::DynamicImage;
 use std::io::Write;
 
 // This is not a proper benchmark, just a quick program for feeling out how options affect
@@ -40,8 +40,6 @@ pub fn main() {
         ColorType::La16 => 2,
         ColorType::Rgb16 => 3,
         ColorType::Rgba16 => 4,
-        ColorType::Bgr8 => 3,
-        ColorType::Bgra8 => 4,
         _ => unimplemented!(),
     };
 

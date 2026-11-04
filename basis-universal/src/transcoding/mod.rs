@@ -12,9 +12,7 @@ pub use transcoder::*;
 mod transcoding_tests;
 
 static TRANSCODER_INIT_CALLED: AtomicBool = AtomicBool::new(false);
-lazy_static::lazy_static! {
-    static ref TRANSCODER_INIT_LOCK: Mutex<()> = Mutex::default();
-}
+static TRANSCODER_INIT_LOCK: Mutex<()> = Mutex::new(());
 
 /// The underlying C++ library requires that transcoder_init() has been called before a .basis file
 /// can be encoded. This function allows a user to do this early in the application explicitly. It

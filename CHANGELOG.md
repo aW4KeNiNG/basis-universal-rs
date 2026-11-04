@@ -10,6 +10,8 @@
  * `CompressorErrorCode` is converted with a match instead of a transmute, and has the codes it
    lacked (`cECFailedInitializing`, `cECFailedCreateKTX2File`, `cECFailedInvalidParameters`) and
    `cECUnknown`
+ * Dependencies: bitflags 2 (`DecodeFlags` derives `Debug`, `Clone`, `Copy`, `PartialEq`, `Eq` and
+   `Hash`), image 0.25 for the tests and examples, and no more lazy_static
 
 ## 0.3.0
  * Updated to most recent up-stream (1.16.x)

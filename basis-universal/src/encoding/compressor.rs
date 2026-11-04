@@ -1,6 +1,5 @@
 use super::*;
 use basis_universal_sys as sys;
-pub use basis_universal_sys::ColorU8;
 
 /// Error codes that can be returned when encoding basis-universal data with a [Compressor]
 #[allow(non_camel_case_types)]

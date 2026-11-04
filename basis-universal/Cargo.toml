@@ -13,12 +13,11 @@ categories = ["game-development", "graphics", "api-bindings", "compression", "en
 
 [dependencies]
 basis-universal-sys = { version = "0.3.1", path = "../basis-universal-sys" }
-lazy_static = "1.4.0"
-bitflags = "1.2.1"
+bitflags = "2.6"
 
 [dev-dependencies]
-image = "0.23.13"
-lz4 = "1.23"
+image = { version = "0.25", default-features = false, features = ["png"] }
+lz4 = "1.28"
 
 [features]
 hint_sse4_1 = ["basis-universal-sys/hint_sse4_1"]

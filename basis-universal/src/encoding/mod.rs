@@ -19,9 +19,7 @@ pub use basis_universal_sys::ColorU8;
 mod encoding_tests;
 
 static ENCODER_INIT_CALLED: AtomicBool = AtomicBool::new(false);
-lazy_static::lazy_static! {
-    static ref ENCODER_INIT_LOCK: Mutex<()> = Mutex::default();
-}
+static ENCODER_INIT_LOCK: Mutex<()> = Mutex::new(());
 
 /// The underlying C++ library requires that encoder_init() has been called before a .basis file can
 /// be encoded. This function allows a user to do this early in the application explicitly. It is

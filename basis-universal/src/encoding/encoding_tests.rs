@@ -1,6 +1,5 @@
 use super::*;
 use crate::BasisTextureFormat;
-use image::GenericImageView;
 
 #[test]
 fn test_new_compressor_params() {
@@ -79,8 +78,6 @@ fn test_encode_image() {
         ColorType::La16 => 2,
         ColorType::Rgb16 => 3,
         ColorType::Rgba16 => 4,
-        ColorType::Bgr8 => 3,
-        ColorType::Bgra8 => 4,
         _ => unimplemented!(),
     };
 

@@ -2,7 +2,6 @@ use basis_universal::{
     BasisTextureFormat, Compressor, CompressorParams, TranscodeParameters, Transcoder,
     TranscoderTextureFormat, UserData,
 };
-use image::GenericImageView;
 
 // This example:
 // - Loads a PNG file
@@ -36,8 +35,6 @@ pub fn main() {
         ColorType::La16 => 2,
         ColorType::Rgb16 => 3,
         ColorType::Rgba16 => 4,
-        ColorType::Bgr8 => 3,
-        ColorType::Bgra8 => 4,
         _ => unimplemented!(),
     };
 
