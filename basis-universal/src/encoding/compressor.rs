@@ -7,17 +7,23 @@ pub use basis_universal_sys::ColorU8;
 #[derive(Copy, Clone, Debug, PartialEq)]
 #[repr(i32)]
 pub enum CompressorErrorCode {
+    cECFailedInitializing = sys::basisu_basis_compressor_error_code_cECFailedInitializing,
     cECFailedReadingSourceImages =
         sys::basisu_basis_compressor_error_code_cECFailedReadingSourceImages,
     cECFailedValidating = sys::basisu_basis_compressor_error_code_cECFailedValidating,
     cECFailedEncodeUASTC = sys::basisu_basis_compressor_error_code_cECFailedEncodeUASTC,
     cECFailedFrontEnd = sys::basisu_basis_compressor_error_code_cECFailedFrontEnd,
-    cECFailedFontendExtract = sys::basisu_basis_compressor_error_code_cECFailedFontendExtract,
+    /// Named `cECFailedFrontendExtract` upstream since basisu 2.0; the old name stays
+    cECFailedFontendExtract = sys::basisu_basis_compressor_error_code_cECFailedFrontendExtract,
     cECFailedBackend = sys::basisu_basis_compressor_error_code_cECFailedBackend,
     cECFailedCreateBasisFile = sys::basisu_basis_compressor_error_code_cECFailedCreateBasisFile,
     cECFailedWritingOutput = sys::basisu_basis_compressor_error_code_cECFailedWritingOutput,
     cECFailedUASTCRDOPostProcess =
         sys::basisu_basis_compressor_error_code_cECFailedUASTCRDOPostProcess,
+    cECFailedCreateKTX2File = sys::basisu_basis_compressor_error_code_cECFailedCreateKTX2File,
+    cECFailedInvalidParameters = sys::basisu_basis_compressor_error_code_cECFailedInvalidParameters,
+    /// A code this binding doesn't know, from a newer basisu
+    cECUnknown = -1,
 }
 
 impl Into<sys::basisu_basis_compressor_error_code> for CompressorErrorCode {
@@ -28,7 +34,42 @@ impl Into<sys::basisu_basis_compressor_error_code> for CompressorErrorCode {
 
 impl From<sys::basisu_basis_compressor_error_code> for CompressorErrorCode {
     fn from(value: sys::basisu_basis_compressor_error_code) -> Self {
-        unsafe { std::mem::transmute(value as u32) }
+        // A match and not a transmute: a code missing from the enum would be undefined behavior
+        match value {
+            sys::basisu_basis_compressor_error_code_cECFailedInitializing => {
+                Self::cECFailedInitializing
+            }
+            sys::basisu_basis_compressor_error_code_cECFailedReadingSourceImages => {
+                Self::cECFailedReadingSourceImages
+            }
+            sys::basisu_basis_compressor_error_code_cECFailedValidating => {
+                Self::cECFailedValidating
+            }
+            sys::basisu_basis_compressor_error_code_cECFailedEncodeUASTC => {
+                Self::cECFailedEncodeUASTC
+            }
+            sys::basisu_basis_compressor_error_code_cECFailedFrontEnd => Self::cECFailedFrontEnd,
+            sys::basisu_basis_compressor_error_code_cECFailedFrontendExtract => {
+                Self::cECFailedFontendExtract
+            }
+            sys::basisu_basis_compressor_error_code_cECFailedBackend => Self::cECFailedBackend,
+            sys::basisu_basis_compressor_error_code_cECFailedCreateBasisFile => {
+                Self::cECFailedCreateBasisFile
+            }
+            sys::basisu_basis_compressor_error_code_cECFailedWritingOutput => {
+                Self::cECFailedWritingOutput
+            }
+            sys::basisu_basis_compressor_error_code_cECFailedUASTCRDOPostProcess => {
+                Self::cECFailedUASTCRDOPostProcess
+            }
+            sys::basisu_basis_compressor_error_code_cECFailedCreateKTX2File => {
+                Self::cECFailedCreateKTX2File
+            }
+            sys::basisu_basis_compressor_error_code_cECFailedInvalidParameters => {
+                Self::cECFailedInvalidParameters
+            }
+            _ => Self::cECUnknown,
+        }
     }
 }
 

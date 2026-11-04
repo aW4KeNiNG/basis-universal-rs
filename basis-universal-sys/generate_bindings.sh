@@ -1,3 +1,7 @@
+# Needs bindgen-cli 0.68 and libclang (LIBCLANG_PATH). The MSVC STL refuses an older clang than
+# the one it was released with: pass -D_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH after -std=c++17
+# and point INCLUDE to an older MSVC toolset if libclang can't parse it. Keep the clang of the
+# WASI SDK out of the PATH, or bindgen takes its include paths.
 bindgen vendor/transcoding_wrapper.cpp -o src/transcoding_bindings.rs \
   --allowlist-function basis_get_bytes_per_block_or_pixel \
   --allowlist-function basis_get_format_name \
@@ -49,7 +53,7 @@ bindgen vendor/transcoding_wrapper.cpp -o src/transcoding_bindings.rs \
   --opaque-type Transcoder \
   --opaque-type basist::basisu_transcoder_state \
   \
-  -- -x c++ -std=c++14
+  -- -x c++ -std=c++17
 
 bindgen vendor/encoding_wrapper.cpp -o src/encoding_bindings.rs \
   --allowlist-function image_clear \
@@ -116,7 +120,7 @@ bindgen vendor/encoding_wrapper.cpp -o src/encoding_bindings.rs \
   --allowlist-function ZSTD_minCLevel \
   --allowlist-function ZSTD_maxCLevel \
   \
-  --allowlist-var basisu::BASISU_MAX_SUPPORTED_TEXTURE_DIMENSION \
+  --allowlist-var basist::BASISU_MAX_SUPPORTED_TEXTURE_DIMENSION \
   --allowlist-var basisu::BASISU_DEFAULT_ENDPOINT_RDO_THRESH \
   --allowlist-var basisu::BASISU_DEFAULT_SELECTOR_RDO_THRESH \
   --allowlist-var basisu::BASISU_DEFAULT_QUALITY \
@@ -136,4 +140,4 @@ bindgen vendor/encoding_wrapper.cpp -o src/encoding_bindings.rs \
   --opaque-type Compressor \
   --opaque-type basisu::image \
   \
-  -- -x c++ -std=c++14
+  -- -x c++ -std=c++17

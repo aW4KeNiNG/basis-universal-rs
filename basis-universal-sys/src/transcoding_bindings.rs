@@ -10,24 +10,45 @@ pub const basisu_texture_format_cBC1: basisu_texture_format = 5;
 pub const basisu_texture_format_cBC3: basisu_texture_format = 6;
 pub const basisu_texture_format_cBC4: basisu_texture_format = 7;
 pub const basisu_texture_format_cBC5: basisu_texture_format = 8;
-pub const basisu_texture_format_cBC7: basisu_texture_format = 9;
-pub const basisu_texture_format_cASTC4x4: basisu_texture_format = 10;
-pub const basisu_texture_format_cPVRTC1_4_RGB: basisu_texture_format = 11;
-pub const basisu_texture_format_cPVRTC1_4_RGBA: basisu_texture_format = 12;
-pub const basisu_texture_format_cATC_RGB: basisu_texture_format = 13;
-pub const basisu_texture_format_cATC_RGBA_INTERPOLATED_ALPHA: basisu_texture_format = 14;
-pub const basisu_texture_format_cFXT1_RGB: basisu_texture_format = 15;
-pub const basisu_texture_format_cPVRTC2_4_RGBA: basisu_texture_format = 16;
-pub const basisu_texture_format_cETC2_R11_EAC: basisu_texture_format = 17;
-pub const basisu_texture_format_cETC2_RG11_EAC: basisu_texture_format = 18;
-pub const basisu_texture_format_cUASTC4x4: basisu_texture_format = 19;
-pub const basisu_texture_format_cBC1_NV: basisu_texture_format = 20;
-pub const basisu_texture_format_cBC1_AMD: basisu_texture_format = 21;
-pub const basisu_texture_format_cRGBA32: basisu_texture_format = 22;
-pub const basisu_texture_format_cRGB565: basisu_texture_format = 23;
-pub const basisu_texture_format_cBGR565: basisu_texture_format = 24;
-pub const basisu_texture_format_cRGBA4444: basisu_texture_format = 25;
-pub const basisu_texture_format_cABGR4444: basisu_texture_format = 26;
+pub const basisu_texture_format_cBC6HSigned: basisu_texture_format = 9;
+pub const basisu_texture_format_cBC6HUnsigned: basisu_texture_format = 10;
+pub const basisu_texture_format_cBC7: basisu_texture_format = 11;
+pub const basisu_texture_format_cASTC_LDR_4x4: basisu_texture_format = 12;
+pub const basisu_texture_format_cASTC_HDR_4x4: basisu_texture_format = 13;
+pub const basisu_texture_format_cASTC_HDR_6x6: basisu_texture_format = 14;
+pub const basisu_texture_format_cPVRTC1_4_RGB: basisu_texture_format = 15;
+pub const basisu_texture_format_cPVRTC1_4_RGBA: basisu_texture_format = 16;
+pub const basisu_texture_format_cATC_RGB: basisu_texture_format = 17;
+pub const basisu_texture_format_cATC_RGBA_INTERPOLATED_ALPHA: basisu_texture_format = 18;
+pub const basisu_texture_format_cFXT1_RGB: basisu_texture_format = 19;
+pub const basisu_texture_format_cPVRTC2_4_RGBA: basisu_texture_format = 20;
+pub const basisu_texture_format_cETC2_R11_EAC: basisu_texture_format = 21;
+pub const basisu_texture_format_cETC2_RG11_EAC: basisu_texture_format = 22;
+pub const basisu_texture_format_cUASTC4x4: basisu_texture_format = 23;
+pub const basisu_texture_format_cUASTC_HDR_4x4: basisu_texture_format = 24;
+pub const basisu_texture_format_cBC1_NV: basisu_texture_format = 25;
+pub const basisu_texture_format_cBC1_AMD: basisu_texture_format = 26;
+pub const basisu_texture_format_cRGBA32: basisu_texture_format = 27;
+pub const basisu_texture_format_cRGB565: basisu_texture_format = 28;
+pub const basisu_texture_format_cBGR565: basisu_texture_format = 29;
+pub const basisu_texture_format_cRGBA4444: basisu_texture_format = 30;
+pub const basisu_texture_format_cABGR4444: basisu_texture_format = 31;
+pub const basisu_texture_format_cRGBA_HALF: basisu_texture_format = 32;
+pub const basisu_texture_format_cRGB_HALF: basisu_texture_format = 33;
+pub const basisu_texture_format_cRGB_9E5: basisu_texture_format = 34;
+pub const basisu_texture_format_cASTC_LDR_5x4: basisu_texture_format = 35;
+pub const basisu_texture_format_cASTC_LDR_5x5: basisu_texture_format = 36;
+pub const basisu_texture_format_cASTC_LDR_6x5: basisu_texture_format = 37;
+pub const basisu_texture_format_cASTC_LDR_6x6: basisu_texture_format = 38;
+pub const basisu_texture_format_cASTC_LDR_8x5: basisu_texture_format = 39;
+pub const basisu_texture_format_cASTC_LDR_8x6: basisu_texture_format = 40;
+pub const basisu_texture_format_cASTC_LDR_10x5: basisu_texture_format = 41;
+pub const basisu_texture_format_cASTC_LDR_10x6: basisu_texture_format = 42;
+pub const basisu_texture_format_cASTC_LDR_8x8: basisu_texture_format = 43;
+pub const basisu_texture_format_cASTC_LDR_10x8: basisu_texture_format = 44;
+pub const basisu_texture_format_cASTC_LDR_10x10: basisu_texture_format = 45;
+pub const basisu_texture_format_cASTC_LDR_12x10: basisu_texture_format = 46;
+pub const basisu_texture_format_cASTC_LDR_12x12: basisu_texture_format = 47;
 pub type basisu_texture_format = ::std::os::raw::c_int;
 pub const basist_block_format_cETC1: basist_block_format = 0;
 pub const basist_block_format_cETC2_RGBA: basist_block_format = 1;
@@ -41,7 +62,7 @@ pub const basist_block_format_cBC7: basist_block_format = 8;
 pub const basist_block_format_cBC7_M5_COLOR: basist_block_format = 9;
 pub const basist_block_format_cBC7_M5_ALPHA: basist_block_format = 10;
 pub const basist_block_format_cETC2_EAC_A8: basist_block_format = 11;
-pub const basist_block_format_cASTC_4x4: basist_block_format = 12;
+pub const basist_block_format_cASTC_LDR_4x4: basist_block_format = 12;
 pub const basist_block_format_cATC_RGB: basist_block_format = 13;
 pub const basist_block_format_cATC_RGBA_INTERPOLATED_ALPHA: basist_block_format = 14;
 pub const basist_block_format_cFXT1_RGB: basist_block_format = 15;
@@ -59,8 +80,28 @@ pub const basist_block_format_cRGBA4444_COLOR: basist_block_format = 26;
 pub const basist_block_format_cRGBA4444_ALPHA: basist_block_format = 27;
 pub const basist_block_format_cRGBA4444_COLOR_OPAQUE: basist_block_format = 28;
 pub const basist_block_format_cRGBA4444: basist_block_format = 29;
-pub const basist_block_format_cUASTC_4x4: basist_block_format = 30;
-pub const basist_block_format_cTotalBlockFormats: basist_block_format = 31;
+pub const basist_block_format_cRGBA_HALF: basist_block_format = 30;
+pub const basist_block_format_cRGB_HALF: basist_block_format = 31;
+pub const basist_block_format_cRGB_9E5: basist_block_format = 32;
+pub const basist_block_format_cUASTC_4x4: basist_block_format = 33;
+pub const basist_block_format_cUASTC_HDR_4x4: basist_block_format = 34;
+pub const basist_block_format_cBC6H: basist_block_format = 35;
+pub const basist_block_format_cASTC_HDR_4x4: basist_block_format = 36;
+pub const basist_block_format_cASTC_HDR_6x6: basist_block_format = 37;
+pub const basist_block_format_cASTC_LDR_5x4: basist_block_format = 38;
+pub const basist_block_format_cASTC_LDR_5x5: basist_block_format = 39;
+pub const basist_block_format_cASTC_LDR_6x5: basist_block_format = 40;
+pub const basist_block_format_cASTC_LDR_6x6: basist_block_format = 41;
+pub const basist_block_format_cASTC_LDR_8x5: basist_block_format = 42;
+pub const basist_block_format_cASTC_LDR_8x6: basist_block_format = 43;
+pub const basist_block_format_cASTC_LDR_10x5: basist_block_format = 44;
+pub const basist_block_format_cASTC_LDR_10x6: basist_block_format = 45;
+pub const basist_block_format_cASTC_LDR_8x8: basist_block_format = 46;
+pub const basist_block_format_cASTC_LDR_10x8: basist_block_format = 47;
+pub const basist_block_format_cASTC_LDR_10x10: basist_block_format = 48;
+pub const basist_block_format_cASTC_LDR_12x10: basist_block_format = 49;
+pub const basist_block_format_cASTC_LDR_12x12: basist_block_format = 50;
+pub const basist_block_format_cTotalBlockFormats: basist_block_format = 51;
 pub type basist_block_format = ::std::os::raw::c_int;
 pub const basist_basis_texture_type_cBASISTexType2D: basist_basis_texture_type = 0;
 pub const basist_basis_texture_type_cBASISTexType2DArray: basist_basis_texture_type = 1;
@@ -70,7 +111,40 @@ pub const basist_basis_texture_type_cBASISTexTypeVolume: basist_basis_texture_ty
 pub const basist_basis_texture_type_cBASISTexTypeTotal: basist_basis_texture_type = 5;
 pub type basist_basis_texture_type = ::std::os::raw::c_int;
 pub const basist_basis_tex_format_cETC1S: basist_basis_tex_format = 0;
-pub const basist_basis_tex_format_cUASTC4x4: basist_basis_tex_format = 1;
+pub const basist_basis_tex_format_cUASTC_LDR_4x4: basist_basis_tex_format = 1;
+pub const basist_basis_tex_format_cUASTC_HDR_4x4: basist_basis_tex_format = 2;
+pub const basist_basis_tex_format_cASTC_HDR_6x6: basist_basis_tex_format = 3;
+pub const basist_basis_tex_format_cUASTC_HDR_6x6_INTERMEDIATE: basist_basis_tex_format = 4;
+pub const basist_basis_tex_format_cXUASTC_LDR_4x4: basist_basis_tex_format = 5;
+pub const basist_basis_tex_format_cXUASTC_LDR_5x4: basist_basis_tex_format = 6;
+pub const basist_basis_tex_format_cXUASTC_LDR_5x5: basist_basis_tex_format = 7;
+pub const basist_basis_tex_format_cXUASTC_LDR_6x5: basist_basis_tex_format = 8;
+pub const basist_basis_tex_format_cXUASTC_LDR_6x6: basist_basis_tex_format = 9;
+pub const basist_basis_tex_format_cXUASTC_LDR_8x5: basist_basis_tex_format = 10;
+pub const basist_basis_tex_format_cXUASTC_LDR_8x6: basist_basis_tex_format = 11;
+pub const basist_basis_tex_format_cXUASTC_LDR_10x5: basist_basis_tex_format = 12;
+pub const basist_basis_tex_format_cXUASTC_LDR_10x6: basist_basis_tex_format = 13;
+pub const basist_basis_tex_format_cXUASTC_LDR_8x8: basist_basis_tex_format = 14;
+pub const basist_basis_tex_format_cXUASTC_LDR_10x8: basist_basis_tex_format = 15;
+pub const basist_basis_tex_format_cXUASTC_LDR_10x10: basist_basis_tex_format = 16;
+pub const basist_basis_tex_format_cXUASTC_LDR_12x10: basist_basis_tex_format = 17;
+pub const basist_basis_tex_format_cXUASTC_LDR_12x12: basist_basis_tex_format = 18;
+pub const basist_basis_tex_format_cASTC_LDR_4x4: basist_basis_tex_format = 19;
+pub const basist_basis_tex_format_cASTC_LDR_5x4: basist_basis_tex_format = 20;
+pub const basist_basis_tex_format_cASTC_LDR_5x5: basist_basis_tex_format = 21;
+pub const basist_basis_tex_format_cASTC_LDR_6x5: basist_basis_tex_format = 22;
+pub const basist_basis_tex_format_cASTC_LDR_6x6: basist_basis_tex_format = 23;
+pub const basist_basis_tex_format_cASTC_LDR_8x5: basist_basis_tex_format = 24;
+pub const basist_basis_tex_format_cASTC_LDR_8x6: basist_basis_tex_format = 25;
+pub const basist_basis_tex_format_cASTC_LDR_10x5: basist_basis_tex_format = 26;
+pub const basist_basis_tex_format_cASTC_LDR_10x6: basist_basis_tex_format = 27;
+pub const basist_basis_tex_format_cASTC_LDR_8x8: basist_basis_tex_format = 28;
+pub const basist_basis_tex_format_cASTC_LDR_10x8: basist_basis_tex_format = 29;
+pub const basist_basis_tex_format_cASTC_LDR_10x10: basist_basis_tex_format = 30;
+pub const basist_basis_tex_format_cASTC_LDR_12x10: basist_basis_tex_format = 31;
+pub const basist_basis_tex_format_cASTC_LDR_12x12: basist_basis_tex_format = 32;
+pub const basist_basis_tex_format_cXUBC7: basist_basis_tex_format = 33;
+pub const basist_basis_tex_format_cTotalFormats: basist_basis_tex_format = 34;
 pub type basist_basis_tex_format = ::std::os::raw::c_int;
 pub const basist_transcoder_texture_format_cTFETC1_RGB: basist_transcoder_texture_format = 0;
 pub const basist_transcoder_texture_format_cTFETC2_RGBA: basist_transcoder_texture_format = 1;
@@ -81,7 +155,8 @@ pub const basist_transcoder_texture_format_cTFBC5_RG: basist_transcoder_texture_
 pub const basist_transcoder_texture_format_cTFBC7_RGBA: basist_transcoder_texture_format = 6;
 pub const basist_transcoder_texture_format_cTFPVRTC1_4_RGB: basist_transcoder_texture_format = 8;
 pub const basist_transcoder_texture_format_cTFPVRTC1_4_RGBA: basist_transcoder_texture_format = 9;
-pub const basist_transcoder_texture_format_cTFASTC_4x4_RGBA: basist_transcoder_texture_format = 10;
+pub const basist_transcoder_texture_format_cTFASTC_LDR_4x4_RGBA: basist_transcoder_texture_format =
+    10;
 pub const basist_transcoder_texture_format_cTFATC_RGB: basist_transcoder_texture_format = 11;
 pub const basist_transcoder_texture_format_cTFATC_RGBA: basist_transcoder_texture_format = 12;
 pub const basist_transcoder_texture_format_cTFFXT1_RGB: basist_transcoder_texture_format = 17;
@@ -89,12 +164,46 @@ pub const basist_transcoder_texture_format_cTFPVRTC2_4_RGB: basist_transcoder_te
 pub const basist_transcoder_texture_format_cTFPVRTC2_4_RGBA: basist_transcoder_texture_format = 19;
 pub const basist_transcoder_texture_format_cTFETC2_EAC_R11: basist_transcoder_texture_format = 20;
 pub const basist_transcoder_texture_format_cTFETC2_EAC_RG11: basist_transcoder_texture_format = 21;
+pub const basist_transcoder_texture_format_cTFBC6H: basist_transcoder_texture_format = 22;
+pub const basist_transcoder_texture_format_cTFASTC_HDR_4x4_RGBA: basist_transcoder_texture_format =
+    23;
 pub const basist_transcoder_texture_format_cTFRGBA32: basist_transcoder_texture_format = 13;
 pub const basist_transcoder_texture_format_cTFRGB565: basist_transcoder_texture_format = 14;
 pub const basist_transcoder_texture_format_cTFBGR565: basist_transcoder_texture_format = 15;
 pub const basist_transcoder_texture_format_cTFRGBA4444: basist_transcoder_texture_format = 16;
+pub const basist_transcoder_texture_format_cTFRGB_HALF: basist_transcoder_texture_format = 24;
+pub const basist_transcoder_texture_format_cTFRGBA_HALF: basist_transcoder_texture_format = 25;
+pub const basist_transcoder_texture_format_cTFRGB_9E5: basist_transcoder_texture_format = 26;
+pub const basist_transcoder_texture_format_cTFASTC_HDR_6x6_RGBA: basist_transcoder_texture_format =
+    27;
+pub const basist_transcoder_texture_format_cTFASTC_LDR_5x4_RGBA: basist_transcoder_texture_format =
+    28;
+pub const basist_transcoder_texture_format_cTFASTC_LDR_5x5_RGBA: basist_transcoder_texture_format =
+    29;
+pub const basist_transcoder_texture_format_cTFASTC_LDR_6x5_RGBA: basist_transcoder_texture_format =
+    30;
+pub const basist_transcoder_texture_format_cTFASTC_LDR_6x6_RGBA: basist_transcoder_texture_format =
+    31;
+pub const basist_transcoder_texture_format_cTFASTC_LDR_8x5_RGBA: basist_transcoder_texture_format =
+    32;
+pub const basist_transcoder_texture_format_cTFASTC_LDR_8x6_RGBA: basist_transcoder_texture_format =
+    33;
+pub const basist_transcoder_texture_format_cTFASTC_LDR_10x5_RGBA: basist_transcoder_texture_format =
+    34;
+pub const basist_transcoder_texture_format_cTFASTC_LDR_10x6_RGBA: basist_transcoder_texture_format =
+    35;
+pub const basist_transcoder_texture_format_cTFASTC_LDR_8x8_RGBA: basist_transcoder_texture_format =
+    36;
+pub const basist_transcoder_texture_format_cTFASTC_LDR_10x8_RGBA: basist_transcoder_texture_format =
+    37;
+pub const basist_transcoder_texture_format_cTFASTC_LDR_10x10_RGBA:
+    basist_transcoder_texture_format = 38;
+pub const basist_transcoder_texture_format_cTFASTC_LDR_12x10_RGBA:
+    basist_transcoder_texture_format = 39;
+pub const basist_transcoder_texture_format_cTFASTC_LDR_12x12_RGBA:
+    basist_transcoder_texture_format = 40;
 pub const basist_transcoder_texture_format_cTFTotalTextureFormats:
-    basist_transcoder_texture_format = 22;
+    basist_transcoder_texture_format = 41;
 pub const basist_transcoder_texture_format_cTFETC1: basist_transcoder_texture_format = 0;
 pub const basist_transcoder_texture_format_cTFETC2: basist_transcoder_texture_format = 1;
 pub const basist_transcoder_texture_format_cTFBC1: basist_transcoder_texture_format = 2;
@@ -110,11 +219,12 @@ pub const basist_transcoder_texture_format_cTFBC7_ALT: basist_transcoder_texture
 pub const basist_transcoder_texture_format_cTFASTC_4x4: basist_transcoder_texture_format = 10;
 pub const basist_transcoder_texture_format_cTFATC_RGBA_INTERPOLATED_ALPHA:
     basist_transcoder_texture_format = 12;
+pub const basist_transcoder_texture_format_cTFASTC_4x4_RGBA: basist_transcoder_texture_format = 10;
 pub type basist_transcoder_texture_format = ::std::os::raw::c_int;
 #[repr(C)]
 #[repr(align(8))]
 pub struct basist_basisu_transcoder_state {
-    pub _bindgen_opaque_blob: [u64; 68usize],
+    pub _bindgen_opaque_blob: [u64; 102usize],
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -171,7 +281,7 @@ pub type basist_basisu_transcoder_state__bindgen_ty_1 = ::std::os::raw::c_int;
 fn bindgen_test_layout_basist_basisu_transcoder_state() {
     assert_eq!(
         ::std::mem::size_of::<basist_basisu_transcoder_state>(),
-        544usize,
+        816usize,
         concat!("Size of: ", stringify!(basist_basisu_transcoder_state))
     );
     assert_eq!(
@@ -189,6 +299,14 @@ pub const basist_basisu_decode_flags_cDecodeFlagsBC1ForbidThreeColorBlocks:
 pub const basist_basisu_decode_flags_cDecodeFlagsOutputHasAlphaIndices: basist_basisu_decode_flags =
     16;
 pub const basist_basisu_decode_flags_cDecodeFlagsHighQuality: basist_basisu_decode_flags = 32;
+pub const basist_basisu_decode_flags_cDecodeFlagsNoETC1SChromaFiltering:
+    basist_basisu_decode_flags = 64;
+pub const basist_basisu_decode_flags_cDecodeFlagsNoDeblockFiltering: basist_basisu_decode_flags =
+    128;
+pub const basist_basisu_decode_flags_cDecodeFlagsForceDeblockFiltering: basist_basisu_decode_flags =
+    512;
+pub const basist_basisu_decode_flags_cDecodeFlagXUASTCLDRDisableFastBC7Transcoding:
+    basist_basisu_decode_flags = 1024;
 pub type basist_basisu_decode_flags = ::std::os::raw::c_int;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -199,6 +317,8 @@ pub struct basist_basisu_image_info {
     pub m_orig_height: u32,
     pub m_width: u32,
     pub m_height: u32,
+    pub m_block_width: u32,
+    pub m_block_height: u32,
     pub m_num_blocks_x: u32,
     pub m_num_blocks_y: u32,
     pub m_total_blocks: u32,
@@ -213,7 +333,7 @@ fn bindgen_test_layout_basist_basisu_image_info() {
     let ptr = UNINIT.as_ptr();
     assert_eq!(
         ::std::mem::size_of::<basist_basisu_image_info>(),
-        44usize,
+        52usize,
         concat!("Size of: ", stringify!(basist_basisu_image_info))
     );
     assert_eq!(
@@ -282,8 +402,28 @@ fn bindgen_test_layout_basist_basisu_image_info() {
         )
     );
     assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).m_num_blocks_x) as usize - ptr as usize },
+        unsafe { ::std::ptr::addr_of!((*ptr).m_block_width) as usize - ptr as usize },
         24usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(basist_basisu_image_info),
+            "::",
+            stringify!(m_block_width)
+        )
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).m_block_height) as usize - ptr as usize },
+        28usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(basist_basisu_image_info),
+            "::",
+            stringify!(m_block_height)
+        )
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).m_num_blocks_x) as usize - ptr as usize },
+        32usize,
         concat!(
             "Offset of field: ",
             stringify!(basist_basisu_image_info),
@@ -293,7 +433,7 @@ fn bindgen_test_layout_basist_basisu_image_info() {
     );
     assert_eq!(
         unsafe { ::std::ptr::addr_of!((*ptr).m_num_blocks_y) as usize - ptr as usize },
-        28usize,
+        36usize,
         concat!(
             "Offset of field: ",
             stringify!(basist_basisu_image_info),
@@ -303,7 +443,7 @@ fn bindgen_test_layout_basist_basisu_image_info() {
     );
     assert_eq!(
         unsafe { ::std::ptr::addr_of!((*ptr).m_total_blocks) as usize - ptr as usize },
-        32usize,
+        40usize,
         concat!(
             "Offset of field: ",
             stringify!(basist_basisu_image_info),
@@ -313,7 +453,7 @@ fn bindgen_test_layout_basist_basisu_image_info() {
     );
     assert_eq!(
         unsafe { ::std::ptr::addr_of!((*ptr).m_first_slice_index) as usize - ptr as usize },
-        36usize,
+        44usize,
         concat!(
             "Offset of field: ",
             stringify!(basist_basisu_image_info),
@@ -323,7 +463,7 @@ fn bindgen_test_layout_basist_basisu_image_info() {
     );
     assert_eq!(
         unsafe { ::std::ptr::addr_of!((*ptr).m_alpha_flag) as usize - ptr as usize },
-        40usize,
+        48usize,
         concat!(
             "Offset of field: ",
             stringify!(basist_basisu_image_info),
@@ -333,7 +473,7 @@ fn bindgen_test_layout_basist_basisu_image_info() {
     );
     assert_eq!(
         unsafe { ::std::ptr::addr_of!((*ptr).m_iframe_flag) as usize - ptr as usize },
-        41usize,
+        49usize,
         concat!(
             "Offset of field: ",
             stringify!(basist_basisu_image_info),
@@ -351,6 +491,8 @@ pub struct basist_basisu_image_level_info {
     pub m_orig_height: u32,
     pub m_width: u32,
     pub m_height: u32,
+    pub m_block_width: u32,
+    pub m_block_height: u32,
     pub m_num_blocks_x: u32,
     pub m_num_blocks_y: u32,
     pub m_total_blocks: u32,
@@ -369,7 +511,7 @@ fn bindgen_test_layout_basist_basisu_image_level_info() {
     let ptr = UNINIT.as_ptr();
     assert_eq!(
         ::std::mem::size_of::<basist_basisu_image_level_info>(),
-        60usize,
+        68usize,
         concat!("Size of: ", stringify!(basist_basisu_image_level_info))
     );
     assert_eq!(
@@ -438,8 +580,28 @@ fn bindgen_test_layout_basist_basisu_image_level_info() {
         )
     );
     assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).m_num_blocks_x) as usize - ptr as usize },
+        unsafe { ::std::ptr::addr_of!((*ptr).m_block_width) as usize - ptr as usize },
         24usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(basist_basisu_image_level_info),
+            "::",
+            stringify!(m_block_width)
+        )
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).m_block_height) as usize - ptr as usize },
+        28usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(basist_basisu_image_level_info),
+            "::",
+            stringify!(m_block_height)
+        )
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).m_num_blocks_x) as usize - ptr as usize },
+        32usize,
         concat!(
             "Offset of field: ",
             stringify!(basist_basisu_image_level_info),
@@ -449,7 +611,7 @@ fn bindgen_test_layout_basist_basisu_image_level_info() {
     );
     assert_eq!(
         unsafe { ::std::ptr::addr_of!((*ptr).m_num_blocks_y) as usize - ptr as usize },
-        28usize,
+        36usize,
         concat!(
             "Offset of field: ",
             stringify!(basist_basisu_image_level_info),
@@ -459,7 +621,7 @@ fn bindgen_test_layout_basist_basisu_image_level_info() {
     );
     assert_eq!(
         unsafe { ::std::ptr::addr_of!((*ptr).m_total_blocks) as usize - ptr as usize },
-        32usize,
+        40usize,
         concat!(
             "Offset of field: ",
             stringify!(basist_basisu_image_level_info),
@@ -469,7 +631,7 @@ fn bindgen_test_layout_basist_basisu_image_level_info() {
     );
     assert_eq!(
         unsafe { ::std::ptr::addr_of!((*ptr).m_first_slice_index) as usize - ptr as usize },
-        36usize,
+        44usize,
         concat!(
             "Offset of field: ",
             stringify!(basist_basisu_image_level_info),
@@ -479,7 +641,7 @@ fn bindgen_test_layout_basist_basisu_image_level_info() {
     );
     assert_eq!(
         unsafe { ::std::ptr::addr_of!((*ptr).m_rgb_file_ofs) as usize - ptr as usize },
-        40usize,
+        48usize,
         concat!(
             "Offset of field: ",
             stringify!(basist_basisu_image_level_info),
@@ -489,7 +651,7 @@ fn bindgen_test_layout_basist_basisu_image_level_info() {
     );
     assert_eq!(
         unsafe { ::std::ptr::addr_of!((*ptr).m_rgb_file_len) as usize - ptr as usize },
-        44usize,
+        52usize,
         concat!(
             "Offset of field: ",
             stringify!(basist_basisu_image_level_info),
@@ -499,7 +661,7 @@ fn bindgen_test_layout_basist_basisu_image_level_info() {
     );
     assert_eq!(
         unsafe { ::std::ptr::addr_of!((*ptr).m_alpha_file_ofs) as usize - ptr as usize },
-        48usize,
+        56usize,
         concat!(
             "Offset of field: ",
             stringify!(basist_basisu_image_level_info),
@@ -509,7 +671,7 @@ fn bindgen_test_layout_basist_basisu_image_level_info() {
     );
     assert_eq!(
         unsafe { ::std::ptr::addr_of!((*ptr).m_alpha_file_len) as usize - ptr as usize },
-        52usize,
+        60usize,
         concat!(
             "Offset of field: ",
             stringify!(basist_basisu_image_level_info),
@@ -519,7 +681,7 @@ fn bindgen_test_layout_basist_basisu_image_level_info() {
     );
     assert_eq!(
         unsafe { ::std::ptr::addr_of!((*ptr).m_alpha_flag) as usize - ptr as usize },
-        56usize,
+        64usize,
         concat!(
             "Offset of field: ",
             stringify!(basist_basisu_image_level_info),
@@ -529,7 +691,7 @@ fn bindgen_test_layout_basist_basisu_image_level_info() {
     );
     assert_eq!(
         unsafe { ::std::ptr::addr_of!((*ptr).m_iframe_flag) as usize - ptr as usize },
-        57usize,
+        65usize,
         concat!(
             "Offset of field: ",
             stringify!(basist_basisu_image_level_info),

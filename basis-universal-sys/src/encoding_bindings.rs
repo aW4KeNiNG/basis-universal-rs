@@ -124,13 +124,13 @@ fn bindgen_test_layout_basisu_color_rgba() {
 #[repr(align(8))]
 #[derive(Debug, Copy, Clone)]
 pub struct basisu_image {
-    pub _bindgen_opaque_blob: [u64; 4usize],
+    pub _bindgen_opaque_blob: [u64; 5usize],
 }
 #[test]
 fn bindgen_test_layout_basisu_image() {
     assert_eq!(
         ::std::mem::size_of::<basisu_image>(),
-        32usize,
+        40usize,
         concat!("Size of: ", stringify!(basisu_image))
     );
     assert_eq!(
@@ -155,7 +155,6 @@ extern "C" {
     );
 }
 pub const basisu_TOTAL_PACK_UASTC_LEVELS: u32 = 5;
-pub const basisu_BASISU_MAX_SUPPORTED_TEXTURE_DIMENSION: u32 = 16384;
 pub const basisu_BASISU_DEFAULT_ENDPOINT_RDO_THRESH: f32 = 1.5;
 pub const basisu_BASISU_DEFAULT_SELECTOR_RDO_THRESH: f32 = 1.25;
 pub const basisu_BASISU_DEFAULT_QUALITY: ::std::os::raw::c_int = 128;
@@ -180,7 +179,7 @@ pub const basisu_basis_compressor_error_code_cECFailedEncodeUASTC:
     basisu_basis_compressor_error_code = 4;
 pub const basisu_basis_compressor_error_code_cECFailedFrontEnd: basisu_basis_compressor_error_code =
     5;
-pub const basisu_basis_compressor_error_code_cECFailedFontendExtract:
+pub const basisu_basis_compressor_error_code_cECFailedFrontendExtract:
     basisu_basis_compressor_error_code = 6;
 pub const basisu_basis_compressor_error_code_cECFailedBackend: basisu_basis_compressor_error_code =
     7;
@@ -192,7 +191,10 @@ pub const basisu_basis_compressor_error_code_cECFailedUASTCRDOPostProcess:
     basisu_basis_compressor_error_code = 10;
 pub const basisu_basis_compressor_error_code_cECFailedCreateKTX2File:
     basisu_basis_compressor_error_code = 11;
+pub const basisu_basis_compressor_error_code_cECFailedInvalidParameters:
+    basisu_basis_compressor_error_code = 12;
 pub type basisu_basis_compressor_error_code = ::std::os::raw::c_int;
+pub const basist_BASISU_MAX_SUPPORTED_TEXTURE_DIMENSION: u32 = 16384;
 extern "C" {
     pub fn ZSTD_minCLevel() -> ::std::os::raw::c_int;
 }

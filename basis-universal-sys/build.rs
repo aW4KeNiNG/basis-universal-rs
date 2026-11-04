@@ -1,6 +1,11 @@
 // args from the basis cmake file
 fn build_with_common_settings() -> cc::Build {
     let mut build = cc::Build::new();
+    // The cmake file only gives these to GCC and Clang. MSVC accepts -Wall, but there it enables
+    // every warning, which floods the build output.
+    if build.get_compiler().is_like_msvc() {
+        return build;
+    }
     build
         .flag_if_supported("-fvisibility=hidden")
         .flag_if_supported("-fno-strict-aliasing")
@@ -9,10 +14,47 @@ fn build_with_common_settings() -> cc::Build {
         .flag_if_supported("-Wno-unused-local-typedefs")
         .flag_if_supported("-Wno-unused-value")
         .flag_if_supported("-Wno-unused-parameter")
-        .flag_if_supported("-Wno-unused-variable");
+        .flag_if_supported("-Wno-unused-variable")
+        .flag_if_supported("-Wno-misleading-indentation");
 
     build
 }
+
+// The encoder library of the basis cmake file (ENCODER_LIB_SRC_LIST). basisu_comp.cpp references
+// every codec, so all of them are needed even if only ETC1S and UASTC LDR 4x4 are exposed.
+const ENCODER_FILES: &[&str] = &[
+    "encoder/basisu_backend.cpp",
+    "encoder/basisu_basis_file.cpp",
+    "encoder/basisu_comp.cpp",
+    "encoder/basisu_enc.cpp",
+    "encoder/basisu_etc.cpp",
+    "encoder/basisu_frontend.cpp",
+    "encoder/basisu_gpu_texture.cpp",
+    "encoder/basisu_pvrtc1_4.cpp",
+    "encoder/basisu_resampler.cpp",
+    "encoder/basisu_resample_filters.cpp",
+    "encoder/basisu_ssim.cpp",
+    "encoder/basisu_uastc_enc.cpp",
+    "encoder/basisu_bc7e_scalar.cpp",
+    "encoder/basisu_dds_export.cpp",
+    "encoder/basisu_bc7enc.cpp",
+    "encoder/jpgd.cpp",
+    "encoder/basisu_kernels_sse.cpp",
+    "encoder/basisu_bc15_spmd.cpp",
+    "encoder/basisu_bc15_spmd_sse.cpp",
+    "encoder/basisu_opencl.cpp",
+    "encoder/pvpngreader.cpp",
+    "encoder/basisu_uastc_hdr_4x4_enc.cpp",
+    "encoder/basisu_astc_hdr_6x6_enc.cpp",
+    "encoder/basisu_astc_hdr_common.cpp",
+    "encoder/basisu_astc_ldr_common.cpp",
+    "encoder/basisu_astc_ldr_encode.cpp",
+    "encoder/basisu_astc_ldr_fencode.cpp",
+    "encoder/basisu_xbc7_encode.cpp",
+    "encoder/basisu_tinyexr.cpp",
+    "encoder/3rdparty/android_astc_decomp.cpp",
+    "transcoder/basisu_transcoder.cpp",
+];
 
 fn main() {
     // Only allow the SSE flag if we compile for x86/x86_64
@@ -23,36 +65,40 @@ fn main() {
             .split(',')
             .any(|arch| arch == "x86_64" || arch == "x86");
 
-    build_with_common_settings()
+    let mut build = build_with_common_settings();
+    build
         .cpp(true)
+        .std("c++17")
         .define("BASISD_SUPPORT_KTX2_ZSTD", "1")
+        .define("BASISU_SUPPORT_OPENCL", "0")
+        .define("BASISU_SUPPORT_ASTCENC", "0")
+        .define("BASISU_DISABLE_ANDROID_ASTC_DECOMP", "0")
         .define(
             "BASISU_SUPPORT_SSE",
             if build_with_sse4_1 { "1" } else { "0" },
-        )
-        .flag_if_supported("--std=c++11")
-        .file("vendor/basis_universal/encoder/pvpngreader.cpp")
-        .file("vendor/basis_universal/encoder/jpgd.cpp")
-        .file("vendor/basis_universal/encoder/basisu_uastc_enc.cpp")
-        .file("vendor/basis_universal/encoder/basisu_ssim.cpp")
-        .file("vendor/basis_universal/encoder/basisu_resampler.cpp")
-        .file("vendor/basis_universal/encoder/basisu_resample_filters.cpp")
-        .file("vendor/basis_universal/encoder/basisu_pvrtc1_4.cpp")
-        .file("vendor/basis_universal/encoder/basisu_opencl.cpp")
-        .file("vendor/basis_universal/encoder/basisu_kernels_sse.cpp")
-        .file("vendor/basis_universal/encoder/basisu_gpu_texture.cpp")
-        .file("vendor/basis_universal/encoder/basisu_frontend.cpp")
-        .file("vendor/basis_universal/encoder/basisu_etc.cpp")
-        .file("vendor/basis_universal/encoder/basisu_enc.cpp")
-        .file("vendor/basis_universal/encoder/basisu_comp.cpp")
-        .file("vendor/basis_universal/encoder/basisu_bc7enc.cpp")
-        .file("vendor/basis_universal/encoder/basisu_basis_file.cpp")
-        .file("vendor/basis_universal/encoder/basisu_backend.cpp")
-        .file("vendor/basis_universal/transcoder/basisu_transcoder.cpp")
-        .file("vendor/basis_universal/zstd/zstd.c")
+        );
+    // Like a cmake Release build: without NDEBUG the asserts of basisu stay on, and an assert
+    // aborts the process on parameters that the library would otherwise reject with an error.
+    if std::env::var("PROFILE").as_deref() == Ok("release") {
+        build.define("NDEBUG", None);
+    }
+    // MSVC compiles SSE 4.1 intrinsics without a flag, GCC and Clang need it
+    if build_with_sse4_1 && !build.get_compiler().is_like_msvc() {
+        build.flag("-msse4.1");
+    }
+    for file in ENCODER_FILES {
+        build.file(format!("vendor/basis_universal/{file}"));
+    }
+    build
         .file("vendor/transcoding_wrapper.cpp")
         .file("vendor/encoding_wrapper.cpp")
         .compile("basisuniversal");
+
+    // Zstd is C: a C++ compiler doesn't build it (GCC and Clang compile a .c as C++ in C++ mode).
+    // It goes after the C++ library, which uses it, for the linkers that resolve in order.
+    build_with_common_settings()
+        .file("vendor/basis_universal/zstd/zstd.c")
+        .compile("basisuniversal_zstd");
 
     // We regenerate binding code and check it in. (See generate_bindings.sh)
 }

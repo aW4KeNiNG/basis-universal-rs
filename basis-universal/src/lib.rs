@@ -61,7 +61,7 @@ pub fn zstd_level_max() -> i32 {
 }
 
 /// Maximum supported texture dimension
-pub const TEXTURE_DIMENSION_MAX: u32 = sys::basisu_BASISU_MAX_SUPPORTED_TEXTURE_DIMENSION as u32;
+pub const TEXTURE_DIMENSION_MAX: u32 = sys::basist_BASISU_MAX_SUPPORTED_TEXTURE_DIMENSION as u32;
 /// Maximum supported image dimension
 pub const IMAGE_DIMENSION_MAX: u32 = sys::basisu_BASISU_MAX_IMAGE_DIMENSION as u32;
 

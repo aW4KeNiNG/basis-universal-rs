@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased
+ * Updated basis_universal to 2.50 (`v2_50`). The ETC1S and UASTC LDR 4x4 encoders produce the
+   same blocks as 1.16; KTX2 files are slightly different because Zstd went from 1.4.9 to 1.5.7
+ * Requires C++17. The build compiles every codec of the upstream encoder library, Zstd as C,
+   defines `NDEBUG` in release builds (the asserts of basisu aborted the process) and passes
+   `-msse4.1` to GCC/Clang with `hint_sse4_1`
+ * `basis_validate_output_buffer_size` ignores `total_slice_blocks` (dropped upstream)
+ * `CompressorErrorCode` is converted with a match instead of a transmute, and has the codes it
+   lacked (`cECFailedInitializing`, `cECFailedCreateKTX2File`, `cECFailedInvalidParameters`) and
+   `cECUnknown`
+
 ## 0.3.0
  * Updated to most recent up-stream (1.16.x)
  * `compressor_params_set_global_sel_pal`, `compressor_params_set_auto_global_sel_pal` and

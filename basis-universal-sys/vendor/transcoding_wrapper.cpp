@@ -139,14 +139,16 @@ extern "C" {
         uint32_t output_rows_in_pixels,
         uint32_t total_slice_blocks
     ) {
+        // basisu 2.x dropped total_slice_blocks: the size is computed from the image size. The
+        // parameter stays so that the bindings don't change.
+        (void)total_slice_blocks;
         return basist::basis_validate_output_buffer_size(
             target_format,
             output_blocks_buf_size_in_blocks_or_pixels,
             orig_width,
             orig_height,
             output_row_pitch_in_blocks_or_pixels,
-            output_rows_in_pixels,
-            total_slice_blocks
+            output_rows_in_pixels
         );
     }
 
@@ -159,16 +161,16 @@ extern "C" {
     // Not implemented
 
     //
-    // basisu_lowlevel_uastc_transcoder
+    // basisu_lowlevel_uastc_ldr_4x4_transcoder
     //
 
     struct LowLevelUastcTranscoder {
-        basist::basisu_lowlevel_uastc_transcoder *pTranscoder;
+        basist::basisu_lowlevel_uastc_ldr_4x4_transcoder *pTranscoder;
     };
 
     LowLevelUastcTranscoder *low_level_uastc_transcoder_new() {
         LowLevelUastcTranscoder *transcoder = new LowLevelUastcTranscoder;
-        transcoder->pTranscoder = new basist::basisu_lowlevel_uastc_transcoder();
+        transcoder->pTranscoder = new basist::basisu_lowlevel_uastc_ldr_4x4_transcoder();
         return transcoder;
     }
 
@@ -262,7 +264,7 @@ extern "C" {
     }
 
     basist::basis_tex_format transcoder_get_tex_format(const Transcoder *transcoder, const void* pData, uint32_t data_size) {
-        return transcoder->pTranscoder->get_tex_format(pData, data_size);
+        return transcoder->pTranscoder->get_basis_tex_format(pData, data_size);
     }
 
     // Returns the number of mipmap levels in an image.

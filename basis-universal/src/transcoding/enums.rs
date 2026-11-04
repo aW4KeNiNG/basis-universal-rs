@@ -52,7 +52,7 @@ pub enum BasisTextureFormat {
     /// texture quality, but larger files. UASTC supports an optional Rate Distortion Optimization
     /// (RDO) post-process stage that conditions the encoded UASTC texture data in the .basis file
     /// so it can be more effectively LZ compressed by the end user.
-    UASTC4x4 = sys::basist_basis_tex_format_cUASTC4x4,
+    UASTC4x4 = sys::basist_basis_tex_format_cUASTC_LDR_4x4,
 }
 
 impl Into<sys::basist_basis_tex_format> for BasisTextureFormat {
@@ -380,7 +380,7 @@ pub enum TranscoderBlockFormat {
     ETC2_EAC_A8 = sys::basist_block_format_cETC2_EAC_A8,
     /// ASTC 4x4 (either color-only or color+alpha). Note that the transcoder always currently assumes sRGB is not enabled when outputting ASTC
     /// data. If you use a sRGB ASTC format you'll get ~1 LSB of additional error, because of the different way ASTC decoders scale 8-bit endpoints to 16-bits during unpacking.
-    ASTC_4x4 = sys::basist_block_format_cASTC_4x4,
+    ASTC_4x4 = sys::basist_block_format_cASTC_LDR_4x4,
 
     ATC_RGB = sys::basist_block_format_cATC_RGB,
     ATC_RGBA_INTERPOLATED_ALPHA = sys::basist_block_format_cATC_RGBA_INTERPOLATED_ALPHA,

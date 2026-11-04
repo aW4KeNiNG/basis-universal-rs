@@ -16,10 +16,14 @@ fn test_new_compressor() {
 
 #[test]
 fn test_compressor_init() {
-    let compressor_params = CompressorParams::new();
+    // basisu 2.x rejects (and asserts in debug builds) params without source images
+    let mut compressor_params = CompressorParams::new();
+    compressor_params
+        .source_image_mut(0)
+        .init(&[255u8; 4 * 4 * 4], 4, 4, 4);
     let mut compressor = Compressor::default();
     unsafe {
-        compressor.init(&compressor_params);
+        assert!(compressor.init(&compressor_params));
     }
     std::mem::drop(compressor);
     std::mem::drop(compressor_params);
