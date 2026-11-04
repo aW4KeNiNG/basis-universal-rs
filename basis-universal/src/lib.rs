@@ -49,19 +49,14 @@ pub const UASTC_QUALITY_MAX: u32 = sys::UastcPackFlags_PackUASTCLevelVerySlow as
 
 /// The minimum compression level that can be provided to [CompressorParams::set_ktx2_uastc_supercompression_level]
 pub fn zstd_level_min() -> i32 {
-    unsafe {
-        sys::ZSTD_minCLevel()
-    }
+    unsafe { sys::ZSTD_minCLevel() }
 }
 /// The maximum compression level that can be provided to [CompressorParams::set_ktx2_uastc_supercompression_level]
 pub fn zstd_level_max() -> i32 {
-    unsafe {
-        sys::ZSTD_maxCLevel()
-    }
+    unsafe { sys::ZSTD_maxCLevel() }
 }
 
 /// Maximum supported texture dimension
 pub const TEXTURE_DIMENSION_MAX: u32 = sys::basist_BASISU_MAX_SUPPORTED_TEXTURE_DIMENSION as u32;
 /// Maximum supported image dimension
 pub const IMAGE_DIMENSION_MAX: u32 = sys::basisu_BASISU_MAX_IMAGE_DIMENSION as u32;
-
