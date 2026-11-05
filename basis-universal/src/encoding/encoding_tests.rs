@@ -184,3 +184,14 @@ fn test_encode_image() {
 
     std::mem::drop(compressor);
 }
+
+#[test]
+fn test_ktx2_zstd_supercompression() {
+    use std::convert::TryInto;
+    let ktx2 = compress_ktx2(|params| {
+        params.set_ktx2_uastc_supercompression(crate::Ktx2UastcSuperCompression::ZStandard);
+        params.set_ktx2_uastc_supercompression_level(crate::zstd_level_max());
+    });
+    // supercompressionScheme of the KTX2 header: 2 is Zstandard
+    assert_eq!(u32::from_le_bytes(ktx2[44..48].try_into().unwrap()), 2);
+}

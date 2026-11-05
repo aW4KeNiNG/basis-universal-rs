@@ -94,11 +94,9 @@ fn main() {
         .file("vendor/encoding_wrapper.cpp")
         .compile("basisuniversal");
 
-    // Zstd is C: a C++ compiler doesn't build it (GCC and Clang compile a .c as C++ in C++ mode).
-    // It goes after the C++ library, which uses it, for the linkers that resolve in order.
-    build_with_common_settings()
-        .file("vendor/basis_universal/zstd/zstd.c")
-        .compile("basisuniversal_zstd");
+    // Zstd comes from the zstd-sys crate (see lib.rs) instead of the vendored zstd.c: a consumer
+    // that also links zstd-sys would otherwise get every ZSTD_* symbol twice. basisu only calls
+    // the stable API, so the vendored zstd.h still matches.
 
     // cc prints rerun-if-env-changed lines, which turn off the default rerun on any change of the
     // package: without these, an edit to the wrappers wouldn't rebuild them.
